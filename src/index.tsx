@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { observable } from 'mobx';
+import { action, observable } from 'mobx';
 import { observer } from 'mobx-react';
 
 class AppState {
@@ -12,6 +12,7 @@ class AppState {
     }, 1000);
   }
 
+  @action
   resetTimer() {
     this.timer = 0;
   }
