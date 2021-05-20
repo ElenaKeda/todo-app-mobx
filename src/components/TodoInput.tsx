@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
 import 'antd/dist/antd.css';
+import { useService } from './Hooks';
+import { observer } from 'mobx-react';
 
-interface TodoInputProps {
-	onAdd(title: string):void
-}
 
-export const TodoInput: React.FC<TodoInputProps> = props => {
+export const TodoInput = observer(() => {
 	const { Search } = Input;
 
 	const [title, setTitle] = useState<string>('');
+	const todoList = useService();
 
 	const changeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setTitle(event.target.value)
+		setTitle(event.target.value);
 	};
 
 	const onClickAdd = (title:string) => {
-		props.onAdd(title);
-		setTitle('')
+		todoList.createTodo(title);
+		setTitle('');
 	};
 
 	return (
@@ -30,4 +30,4 @@ export const TodoInput: React.FC<TodoInputProps> = props => {
 			onSearch={onClickAdd}
 		/>
 	)
-}
+})
