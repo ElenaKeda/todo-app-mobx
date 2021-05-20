@@ -1,21 +1,22 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { List } from 'antd';
-import { ITodo } from '../interfaces';
 import { SomeTodo } from './SomeTodo';
+import { useService } from './Hooks';
+import { observer } from 'mobx-react';
 
 
-export const TodoList = ({ todos, onRemove, onChecked}:{todos: ITodo[], onRemove:any, onChecked:any}) => {
-	// const todos = service.todos;
-	console.count('list render')
+export const TodoList = observer(() => {
+	console.count('list render');
+	const todoList = useService();
 	return (
 		<List
 			size="large"
 			bordered
-			dataSource={todos}
-			renderItem={todo => <List.Item key={todo.id}><SomeTodo todo={todo} onRemove={onRemove} onChecked={onChecked} /></List.Item>}
+			dataSource={todoList.todos}
+			renderItem={todo => <List.Item key={todo.id}><SomeTodo todo={todo} onRemove={() => todoList.deleteTodo(todo.id)} onChecked={() => todoList.completeTodo(todo.id)} /></List.Item>}
 		/>
 	)
-}
+})
 
 
