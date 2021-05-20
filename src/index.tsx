@@ -1,33 +1,10 @@
+import './index.css';
+import App from './App';
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { action, observable } from 'mobx';
-import { observer } from 'mobx-react';
 
-class AppState {
-  @observable timer = 0;
 
-  constructor() {
-    setInterval(() => {
-      this.timer += 1;
-    }, 1000);
-  }
 
-  @action
-  resetTimer() {
-    this.timer = 0;
-  }
-}
+ReactDOM.render(<App />,document.getElementById('root'));
 
-const Timer = observer(() => {
-  const service = React.useMemo(() => new AppState(), []);
-
-  return (
-    <div>
-      <button onClick={() => service.resetTimer()}>
-        Seconds passed: {service.timer}
-      </button>
-    </div>
-  );
-});
-
-ReactDOM.render(<Timer />, document.getElementById('root'));

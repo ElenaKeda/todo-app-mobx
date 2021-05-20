@@ -17,10 +17,16 @@ module.exports = {
     extensions: ['.js', '.ts', '.tsx']
   },
   module: {
-    rules: [{
-      test: /\.tsx?$/,
-      loader: "awesome-typescript-loader",
-      include: path.join(__dirname, 'src')
-    }]
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.tsx?$/,
+        loader: "awesome-typescript-loader",
+        include: path.join(__dirname, 'src')
+      }
+  ]
   }
 };
