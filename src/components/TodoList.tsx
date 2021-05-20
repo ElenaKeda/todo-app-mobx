@@ -7,7 +7,7 @@ import { SomeTodo } from './SomeTodo';
 
 export const TodoList = ({ todos, onRemove, onChecked}:{todos: ITodo[], onRemove:any, onChecked:any}) => {
 	// const todos = service.todos;
-	console.log('todolist')
+	console.count('list render')
 	return (
 		<List
 			size="large"

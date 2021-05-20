@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { observable, action, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { ITodo } from '../interfaces';
@@ -31,6 +31,8 @@ export class Service {
 		})
 	}
 }
+
+// export default createContext(new Service())
 
 
 

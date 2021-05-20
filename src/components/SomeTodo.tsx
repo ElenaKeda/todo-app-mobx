@@ -6,7 +6,7 @@ import { ITodo } from '../interfaces';
 
 
 export const SomeTodo = ({todo, onRemove, onChecked}:{todo:ITodo, onRemove:any, onChecked:any}) => {
-	console.log('sometodo', todo)
+
 	return (
 		<div className="wrapper">
 			<div className="todo-wrapper">
