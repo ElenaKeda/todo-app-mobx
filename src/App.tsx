@@ -24,7 +24,6 @@ const App = observer (() => {
         <div className="container">
           <TodoInput onAdd={addTitle}/>
           <TodoList todos={service.todos} onRemove={removeTodo} onChecked={checkedTodo}/>
-          {/* <TodoList todos={todos} onRemove={removeTodo} onChecked={checkedTodo}/> */}
         </div>
       </div>
     </div>

@@ -13,12 +13,10 @@ export class Service {
 			id: Date.now(),
 			completed: false
 		}]
-		console.log('service', this.todos)
 	}
 
 	@action deleteTodo(id:number) {
 		this.todos = this.todos.filter(todo => todo.id !== id)
-		console.log('delete', id)
 	}
 
 	@action completeTodo(id:number) {
@@ -31,7 +29,6 @@ export class Service {
 			}
 			return todo
 		})
-		console.log('complete',this.todos)
 	}
 }
 
