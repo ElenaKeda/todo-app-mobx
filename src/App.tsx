@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import { TodoPage } from './components/pages/TodoPage';
 import { EditPage } from './components/pages/EditPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { NotFound } from './components/pages/NotFoundPage';
 
 
 const App = observer(() => {
@@ -19,11 +20,12 @@ const App = observer(() => {
         <Header />
         <div className="main-wrapper">
           <div className="container">
-            {/* <TodoInput />
-            <TodoList /> */}
             <Switch>
               <Route path="/" component={TodoPage} exact/>
               <Route path="/edit" component={EditPage}/>
+              <Route path="*">
+                <NotFound />
+              </Route>
             </Switch>
           </div>
         </div>

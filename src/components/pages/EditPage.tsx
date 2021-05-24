@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Input, List, Tooltip } from 'antd';
 import { SomeTodo } from '../SomeTodo';
@@ -12,6 +12,8 @@ import { Button, notification, Space } from 'antd';
 export const EditPage = (props:any) => {
   const history = useHistory();
 
+  const [title, setTitle] = useState(props.location.state.title);
+
   const openNotificationWithIcon = type => {
     notification[type]({
       message: 'Information',
@@ -21,6 +23,10 @@ export const EditPage = (props:any) => {
     });
   };
 
+  const editTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value)
+  }
+
   return(
     <>
       <h1>Edit task</h1>
@@ -28,8 +34,8 @@ export const EditPage = (props:any) => {
       <br />
       <br />
       <Input
-        onChange={()=>console.log(props.location)}
-        value={props.location.state.title}
+        onChange={editTitle}
+        value={title}
         placeholder="Edit your task"
         prefix={<ScheduleOutlined className="site-form-item-icon" />}
         suffix={
@@ -41,6 +47,7 @@ export const EditPage = (props:any) => {
       <br />
       <br />
       <Space>
+        <Button onClick={()=>console.log(title)} type="primary">Save</Button>
         <Button onClick={() => openNotificationWithIcon('info')}>Info about task</Button>
       </Space>
     </>
