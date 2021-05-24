@@ -1,11 +1,14 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { Button, Checkbox } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { ITodo } from '../interfaces';
+import { observer } from 'mobx-react';
+import { Link } from 'react-router-dom'
+import { EditPage } from './pages/EditPage';
 
 
-export const SomeTodo = ({todo, onRemove, onChecked}:{todo:ITodo, onRemove:any, onChecked:any}) => {
+export const SomeTodo = observer(({todo, onRemove, onChecked}:{todo:ITodo, onRemove:any, onChecked:any}) => {
 console.log('sometodo');
 	return (
 		<div className="wrapper">
@@ -25,7 +28,19 @@ console.log('sometodo');
 					danger>
 					<DeleteOutlined />
 				</Button>
+				<Link to={{
+						pathname: "/edit",
+						state: { title: todo.title, id: todo.id, completed: todo.completed}
+				}} >
+					<Button 
+						onClick={() => console.log(todo.title)}
+						shape="circle"
+						danger>
+						<EditOutlined />
+					</Button>
+				</Link>
 			</div>
 		</div>
 	)
-}
+})
+

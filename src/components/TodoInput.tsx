@@ -17,7 +17,7 @@ export const TodoInput = observer(() => {
 
 	const onClickAdd = (title:string) => {
 		todoList.createTodo(title);
-		setTitle('');
+		setTitle('')
 	};
 
 	return (

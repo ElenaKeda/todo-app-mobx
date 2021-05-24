@@ -14,7 +14,10 @@ export const TodoList = observer(() => {
 			size="large"
 			bordered
 			dataSource={todoList.todos}
-			renderItem={todo => <List.Item key={todo.id}><SomeTodo todo={todo} onRemove={() => todoList.deleteTodo(todo.id)} onChecked={() => todoList.completeTodo(todo.id)} /></List.Item>}
+			renderItem={todo => <List.Item key={todo.id}>
+					<SomeTodo todo={todo} onRemove={todoList.deleteTodo} onChecked={todoList.completeTodo} />
+
+				</List.Item>}
 		/>
 	)
 })

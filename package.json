@@ -33,10 +33,13 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
+    "@types/react-router-dom": "^5.1.7",
     "antd": "^4.15.6",
     "mobx": "^5.15.7",
     "mobx-react": "^6.3.1",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
   }
 }
