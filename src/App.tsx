@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
 import 'antd/dist/antd.css';
-import { TodoInput } from './components/TodoInput';
-import { TodoList } from './components/TodoList';
 import { Header } from './components/Header';
 import { observer } from 'mobx-react';
 import { TodoPage } from './components/pages/TodoPage';

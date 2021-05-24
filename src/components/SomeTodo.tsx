@@ -5,7 +5,6 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { ITodo } from '../interfaces';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom'
-import { EditPage } from './pages/EditPage';
 
 
 export const SomeTodo = observer(({todo, onRemove, onChecked}:{todo:ITodo, onRemove:any, onChecked:any}) => {

@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Input, List, Tooltip } from 'antd';
-import { SomeTodo } from '../SomeTodo';
 import { useService } from '../Hooks';
 import { observer } from 'mobx-react';
 import { InfoCircleOutlined, ScheduleOutlined, UserOutlined } from '@ant-design/icons';
-import {Redirect, useHistory} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { Button, notification, Space } from 'antd';
 
 
-export const EditPage = (props:any) => {
+export const EditPage = observer((props:any) => {
   const history = useHistory();
 
-  const [title, setTitle] = useState(props.location.state.title);
+  const [title, setTitle] = useState<string>(props.location.state.title);
 
-  const openNotificationWithIcon = type => {
+	const todoList = useService();
+
+	const editTodo = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setTitle(event.target.value);
+	};
+
+  const openNotificationWithIcon = (type:any) => {
     notification[type]({
       message: 'Information',
       description:
@@ -23,10 +28,6 @@ export const EditPage = (props:any) => {
     });
   };
 
-  const editTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value)
-  }
-
   return(
     <>
       <h1>Edit task</h1>
@@ -34,7 +35,7 @@ export const EditPage = (props:any) => {
       <br />
       <br />
       <Input
-        onChange={editTitle}
+        onChange={editTodo}
         value={title}
         placeholder="Edit your task"
         prefix={<ScheduleOutlined className="site-form-item-icon" />}
@@ -47,9 +48,9 @@ export const EditPage = (props:any) => {
       <br />
       <br />
       <Space>
-        <Button onClick={()=>console.log(title)} type="primary">Save</Button>
+        <Button onClick={()=>todoList.editTodo(props.location.state.id, title)} type="primary">Save</Button>
         <Button onClick={() => openNotificationWithIcon('info')}>Info about task</Button>
       </Space>
     </>
   )
-}
+})

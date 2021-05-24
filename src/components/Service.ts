@@ -1,7 +1,6 @@
 import React from 'react';
 import { observable, action, runInAction } from 'mobx';
 import { ITodo } from '../interfaces';
-import { Redirect } from 'react-router';
 
 
 export class Service {
@@ -28,9 +27,15 @@ export class Service {
 		})
 	}
 
-	@action.bound editTodo (id:number, title:string) {
-    console.log("===> todo changed!", id, title);
-	}
+	@action.bound editTodo = (id:number, value:string) => {
+		this.todos.forEach(todo => {
+			if (todo.id === id) {
+				todo.title = value
+			}
+			return todo
+		})
+		// console.log(this.todos.find(todo=> todo.id===id).title)
+  }
 }
 
 
