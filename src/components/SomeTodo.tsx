@@ -13,6 +13,7 @@ console.log('sometodo');
 		<div className="wrapper">
 			<div className="todo-wrapper">
 				<Checkbox 
+					checked={todo.completed}
 					onChange={() => onChecked(todo.id)}>
 					<span
 							className={todo.completed ? 'completed' : undefined}>
