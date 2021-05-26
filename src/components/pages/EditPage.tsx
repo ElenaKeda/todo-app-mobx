@@ -48,7 +48,7 @@ export const EditPage = observer((props:any) => {
       <br />
       <br />
       <Space>
-        <Button onClick={()=>todoList.editTodo(props.location.state.id, title)} type="primary">Save</Button>
+        <Button onClick={()=>todoList.editTodo(props.location.state, title)} type="primary">Save</Button>
         <Button onClick={() => openNotificationWithIcon('info')}>Info about task</Button>
       </Space>
     </>

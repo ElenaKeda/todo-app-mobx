@@ -2,8 +2,9 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Button, Result } from "antd"
 import { useHistory } from 'react-router';
+import { observer } from 'mobx-react';
 
-export const NotFound = () => {
+export const NotFound = observer(() => {
   const history = useHistory();
   return (    
     <Result
@@ -14,4 +15,4 @@ export const NotFound = () => {
     />
   )
   
-}
+})

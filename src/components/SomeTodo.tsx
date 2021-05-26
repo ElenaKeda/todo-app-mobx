@@ -14,7 +14,7 @@ console.log('sometodo');
 			<div className="todo-wrapper">
 				<Checkbox 
 					checked={todo.completed}
-					onChange={() => onChecked(todo.id)}>
+					onChange={() => onChecked(todo)}>
 					<span
 							className={todo.completed ? 'completed' : undefined}>
 							{todo.title}
@@ -23,7 +23,7 @@ console.log('sometodo');
 			</div>
 			<div className="btn-wrapper">
 				<Button 
-					onClick={() => onRemove(todo.id)}
+					onClick={() => onRemove(todo)}
 					shape="circle"
 					danger>
 					<DeleteOutlined />
