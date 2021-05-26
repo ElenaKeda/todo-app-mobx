@@ -12,7 +12,7 @@ export class Service {
 	@action createTodo(title:string) {
 		this.todos = [...this.todos, {
 			title,
-			id: Date.now(),
+			id: String(Date.now()),
 			completed: false
 		}]
 	}
@@ -37,8 +37,6 @@ export class Service {
 			}
 			return item
 		})
-
-		// console.log(this.todos.find(item=> item.id===todo.id).title)
   }
 }
 

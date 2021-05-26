@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 
 export const SomeTodo = observer(({todo, onRemove, onChecked}:{todo:ITodo, onRemove:any, onChecked:any}) => {
-console.log('sometodo');
+
 	return (
 		<div className="wrapper">
 			<div className="todo-wrapper">
@@ -29,11 +29,10 @@ console.log('sometodo');
 					<DeleteOutlined />
 				</Button>
 				<Link to={{
-						pathname: "/edit",
-						state: { title: todo.title, id: todo.id, completed: todo.completed}
+						pathname: `/todo/${todo.id}`
 				}} >
 					<Button 
-						onClick={() => console.log(todo.title)}
+						// onClick={() => console.log(todo.title, todo.id,todo)}
 						shape="circle"
 						danger>
 						<EditOutlined />
