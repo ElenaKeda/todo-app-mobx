@@ -1,14 +1,17 @@
 import React from 'react';
 import { observable, action, runInAction } from 'mobx';
-import { ITodo } from '../interfaces';
+import { ITodo, IService } from '../interfaces';
+import { injectable, inject } from "inversify";
+import "reflect-metadata";
+import { TYPES } from "../types";
 
-
-export class Service {
+@injectable()
+export class Service implements IService{
 	@observable todos:ITodo[] = [];
-	constructor() {
-		console.log('constructor')
-	}
-
+	// constructor() {
+	// 	console.log('constructor')
+	// }
+	
 	@action createTodo(title:string) {
 		this.todos = [...this.todos, {
 			title,
@@ -30,7 +33,8 @@ export class Service {
 		})
 	}
 
-	@action.bound editTodo = (todo:ITodo, value:string) => {
+	
+	@action.bound editTodo (todo:ITodo, value:string) {
 		this.todos.forEach(item => {
 			if (item.id === todo.id) {
 				item.title = value

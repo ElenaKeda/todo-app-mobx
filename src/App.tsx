@@ -7,12 +7,13 @@ import { TodoPage } from './components/pages/TodoPage';
 import { EditPage } from './components/pages/EditPage';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { NotFound } from './components/pages/NotFoundPage';
-import { useService } from './components/Hooks';
+import { ServiceProvider } from './components/Context';
+import { Provider } from 'inversify-react';
+import { myContainer } from './inversify.config';
 
 
 const App = observer(() => {
   console.count('app render');
-  const todoList = useService()
 
   return (
     <BrowserRouter>
@@ -20,12 +21,14 @@ const App = observer(() => {
         <Header />
         <div className="main-wrapper">
           <div className="container">
-            <Switch>
-              <Route path="/todo" component={TodoPage} exact/>
-              <Route path="/todo/:id" component={EditPage}/>
-              <Route path="/404" component={NotFound} />
-              <Redirect from='*' to='/404' />
-            </Switch>
+            <Provider container={myContainer}>
+              <Switch>
+                <Route path="/todo" component={TodoPage} exact/>
+                <Route path="/todo/:id" component={EditPage}/>
+                <Route path="/404" component={NotFound} />
+                <Redirect from='*' to='/404' />
+              </Switch>
+            </Provider>
           </div>
         </div>
       </div>
