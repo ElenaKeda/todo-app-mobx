@@ -4,7 +4,7 @@ import { Button, Checkbox } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { ITodo } from '../interfaces';
 import { observer } from 'mobx-react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 
 export const SomeTodo = observer(({todo, onRemove, onChecked}:{todo:ITodo, onRemove:any, onChecked:any}) => {
@@ -28,11 +28,9 @@ export const SomeTodo = observer(({todo, onRemove, onChecked}:{todo:ITodo, onRem
 					danger>
 					<DeleteOutlined />
 				</Button>
-				<Link to={{
-						pathname: `/todo/${todo.id}`
-				}} >
+				<Link to={`/todo/${todo.id}`} >
 					<Button 
-						// onClick={() => console.log(todo.title, todo.id,todo)}
+						onClick={() => console.log(todo.title, todo.id)}
 						shape="circle"
 						danger>
 						<EditOutlined />
