@@ -15,7 +15,7 @@
 
 .btn-wrapper {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 80px;
 }
 
