@@ -7,8 +7,9 @@ import { observer } from 'mobx-react';
 
 
 export const TodoList = observer(() => {
-	console.count('list render');
+	
 	const todoList = useService();
+
 	return (
 		<List
 			size="large"

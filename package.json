@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
+    "@types/hoist-non-react-statics": "^3.3.1",
     "@types/react-router-dom": "^5.1.7",
     "antd": "^4.15.6",
     "mobx": "^5.15.7",

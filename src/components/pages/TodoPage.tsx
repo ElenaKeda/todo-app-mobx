@@ -5,11 +5,11 @@ import { TodoList } from '../TodoList';
 import { observer } from 'mobx-react';
 
 
-export const TodoPage = () => {
+export const TodoPage = observer(() => {
   return (
     <>
       <TodoInput />
       <TodoList />
     </>
   )
-}
+})
