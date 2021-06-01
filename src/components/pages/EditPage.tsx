@@ -8,12 +8,14 @@ import { Redirect, Route, RouteComponentProps, useHistory} from 'react-router-do
 import { Button, notification, Space } from 'antd';
 import { ITodo } from '../../interfaces';
 import { serviceContainer } from '../../inversify.config';
+import { StorageService } from '../StorageService';
 
 
 export const EditPage = observer((props: RouteComponentProps<any>) => {
 
 	const todoList = useService();
   const history = useHistory();
+  
   
   const idTodo = props.match.params.id as string | undefined;
 
@@ -39,7 +41,7 @@ export const EditPage = observer((props: RouteComponentProps<any>) => {
       <>
         <h1>Edit task</h1>
         <Button type="primary" onClick={() => history.push('/todo')}>Back to main list</Button>
-        <Button type="primary" onClick={() => console.log(serviceContainer)}>test</Button>
+        <Button type="primary" onClick={() => console.log('j')}>test</Button>
         <br />
         <br />
         <Input
