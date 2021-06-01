@@ -6,6 +6,6 @@ import { Service } from "./components/Service";
 const myContainer = new Container();
 myContainer.bind<IService>(TYPES.Service).to(Service);
 
-const service = myContainer.get<IService>(TYPES.Service);
+const serviceContainer = myContainer.get<IService>(TYPES.Service);
 
-export { myContainer, service };
+export { myContainer, serviceContainer };

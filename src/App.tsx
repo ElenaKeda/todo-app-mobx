@@ -8,8 +8,6 @@ import { EditPage } from './components/pages/EditPage';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { NotFound } from './components/pages/NotFoundPage';
 import { ServiceProvider } from './components/Context';
-import { Provider } from 'inversify-react';
-import { myContainer } from './inversify.config';
 
 
 const App = observer(() => {
@@ -21,14 +19,14 @@ const App = observer(() => {
         <Header />
         <div className="main-wrapper">
           <div className="container">
-            <Provider container={myContainer}>
+            <ServiceProvider>
               <Switch>
                 <Route path="/todo" component={TodoPage} exact/>
                 <Route path="/todo/:id" component={EditPage}/>
                 <Route path="/404" component={NotFound} />
                 <Redirect from='*' to='/404' />
               </Switch>
-            </Provider>
+            </ServiceProvider>
           </div>
         </div>
       </div>

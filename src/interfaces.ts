@@ -5,6 +5,7 @@ export interface ITodo {
 }
 
 export interface IService {
+    todos: ITodo[],
     createTodo(title:string): void,
     deleteTodo(todo:ITodo): void,
     completeTodo(todo:ITodo): void,

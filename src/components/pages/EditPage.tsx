@@ -7,7 +7,7 @@ import { InfoCircleOutlined, ScheduleOutlined, UserOutlined } from '@ant-design/
 import { Redirect, Route, RouteComponentProps, useHistory} from 'react-router-dom';
 import { Button, notification, Space } from 'antd';
 import { ITodo } from '../../interfaces';
-import { service } from '../../inversify.config';
+import { serviceContainer } from '../../inversify.config';
 
 
 export const EditPage = observer((props: RouteComponentProps<any>) => {
@@ -39,7 +39,7 @@ export const EditPage = observer((props: RouteComponentProps<any>) => {
       <>
         <h1>Edit task</h1>
         <Button type="primary" onClick={() => history.push('/todo')}>Back to main list</Button>
-        <Button type="primary" onClick={() => console.log(idTodo, props, service)}>test</Button>
+        <Button type="primary" onClick={() => console.log(serviceContainer)}>test</Button>
         <br />
         <br />
         <Input
@@ -56,7 +56,7 @@ export const EditPage = observer((props: RouteComponentProps<any>) => {
         <br />
         <br />
         <Space>
-          <Button onClick={()=>service.editTodo(todoTodo, title)} type="primary">Save</Button>
+          <Button onClick={()=>todoList.editTodo(todoTodo, title)} type="primary">Save</Button>
           <Button onClick={() => openNotificationWithIcon()}>Info about task</Button>
         </Space>
       </>
