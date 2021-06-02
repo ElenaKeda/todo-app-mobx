@@ -6,8 +6,9 @@ import { ServiceProvider } from './components/Context';
 
 
 ReactDOM.render(
-  <ServiceProvider>
+  // <ServiceProvider>
     <App /> 
-  </ServiceProvider>,
+  // </ServiceProvider>
+  ,
   document.getElementById('root'));
 

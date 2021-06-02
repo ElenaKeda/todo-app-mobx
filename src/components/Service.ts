@@ -1,43 +1,60 @@
 import React from 'react';
 import { observable, action, runInAction } from 'mobx';
-import { ITodo } from '../interfaces';
+import { ITodo, IService } from '../interfaces';
+import { injectable, inject } from "inversify";
+import "reflect-metadata";
+import { TYPES } from '../types';
+import { StorageService } from './StorageService';
 
 
-export class Service {
-	@observable todos:ITodo[] = [];
-	constructor() {
-		console.log('constructor')
+@injectable()
+export class Service implements IService{
+
+	StorageService: StorageService;
+
+	constructor (@inject(TYPES.StorageService)StorageService: StorageService) {
+		this.StorageService = StorageService;
+		const data = localStorage.getItem('todos');
+		if (!data) return this;
+		this.todos = JSON.parse(data);
 	}
 
+	@observable todos:ITodo[] = [];
+	
 	@action createTodo(title:string) {
 		this.todos = [...this.todos, {
 			title,
 			id: String(Date.now()),
 			completed: false
-		}]
+		}];
+		this.StorageService.saveStorage('todos', this.todos);
 	}
 
 	@action.bound deleteTodo(todo:ITodo) {
-		this.todos = this.todos.filter(item => item.id !== todo.id)
+		this.todos = this.todos.filter(item => item !== todo);
+		this.StorageService.saveStorage('todos', this.todos)
 	}
 
 	@action.bound completeTodo(todo:ITodo) {
 		this.todos.forEach(item => {
-			if (item.id === todo.id) {
-				item.completed = !item.completed
+			if (item === todo) {
+				item.completed = !item.completed;
 			}
-			return item
+			return item;
 		})
+		this.StorageService.saveStorage('todos', this.todos);
 	}
 
-	@action.bound editTodo = (todo:ITodo, value:string) => {
+	@action.bound editTodo (todo:ITodo, value:string) {
 		this.todos.forEach(item => {
-			if (item.id === todo.id) {
-				item.title = value
+			if (item === todo) {
+				item.title = value;
 			}
-			return item
+			return item;
 		})
+		this.StorageService.saveStorage('todos', this.todos);
   }
+	
 }
 
 
