@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Input, List, Result, Tooltip } from 'antd';
+import { Input, Result, Tooltip } from 'antd';
 import { useService } from '../Hooks';
 import { observer } from 'mobx-react';
 import { InfoCircleOutlined, ScheduleOutlined, UserOutlined } from '@ant-design/icons';
-import { Redirect, Route, RouteComponentProps, useHistory} from 'react-router-dom';
+import { RouteComponentProps, useHistory} from 'react-router-dom';
 import { Button, notification, Space } from 'antd';
-import { ITodo } from '../../interfaces';
-import { serviceContainer } from '../../inversify.config';
-import { StorageService } from '../StorageService';
 
 
 export const EditPage = observer((props: RouteComponentProps<any>) => {
@@ -16,9 +13,7 @@ export const EditPage = observer((props: RouteComponentProps<any>) => {
 	const todoList = useService();
   const history = useHistory();
   
-  
   const idTodo = props.match.params.id as string | undefined;
-
   const todoTodo = todoList.todos.find(todo => todo.id === idTodo);
 
   if (typeof todoTodo !== 'undefined') {
@@ -41,7 +36,6 @@ export const EditPage = observer((props: RouteComponentProps<any>) => {
       <>
         <h1>Edit task</h1>
         <Button type="primary" onClick={() => history.push('/todo')}>Back to main list</Button>
-        <Button type="primary" onClick={() => console.log('j')}>test</Button>
         <br />
         <br />
         <Input

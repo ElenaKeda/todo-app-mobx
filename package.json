@@ -36,6 +36,7 @@
     "@types/hoist-non-react-statics": "^3.3.1",
     "@types/react-router-dom": "^5.1.7",
     "antd": "^4.15.6",
+    "axios": "^0.21.1",
     "inversify": "^5.1.1",
     "inversify-react": "^1.0.0",
     "mobx": "^5.15.7",

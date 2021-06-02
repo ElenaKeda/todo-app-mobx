@@ -4,6 +4,13 @@ export interface ITodo {
     completed: boolean
 }
 
+export interface ITodosFetch {
+    userId: number,
+    id: number,
+    title: string,
+    completed: boolean
+}
+
 export interface IService {
     todos: ITodo[],
     createTodo(title:string): void,
