@@ -22,5 +22,4 @@ export interface IService {
 export interface IStorageService {
     getStorage(todoKey:string): ITodo[] | [],
     saveStorage(todoKey: string, todos:ITodo[]): void,
-    removeStorage(todoKey: string): void
 }

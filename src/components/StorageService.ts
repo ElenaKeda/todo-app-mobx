@@ -19,7 +19,4 @@ export class StorageService implements IStorageService {
     localStorage.setItem(todoKey, JSON.stringify(todos))
   }
 
-  removeStorage(todoKey: string) {
-    localStorage.removeItem(todoKey)
-  }
 }

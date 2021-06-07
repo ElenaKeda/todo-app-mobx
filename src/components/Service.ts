@@ -5,18 +5,18 @@ import { injectable, inject } from "inversify";
 import "reflect-metadata";
 import { TYPES } from '../types';
 import { StorageService } from './StorageService';
+import { myContainer } from '../inversify.config';
 
 
 @injectable()
 export class Service implements IService{
 
-	StorageService: StorageService;
+	storage: StorageService = myContainer.get(TYPES.StorageService)
 
-	constructor (@inject(TYPES.StorageService)StorageService: StorageService) {
-		this.StorageService = StorageService;
-		const data = localStorage.getItem('todos');
+	constructor () {
+		const data = this.storage.getStorage('todos');
 		if (!data) return this;
-		this.todos = JSON.parse(data);
+		this.todos = data
 	}
 
 	@observable todos:ITodo[] = [];
@@ -27,12 +27,12 @@ export class Service implements IService{
 			id: String(Date.now()),
 			completed: false
 		}];
-		this.StorageService.saveStorage('todos', this.todos);
+		this.storage.saveStorage('todos', this.todos);
 	}
 
 	@action.bound deleteTodo(todo:ITodo) {
 		this.todos = this.todos.filter(item => item !== todo);
-		this.StorageService.saveStorage('todos', this.todos)
+		this.storage.saveStorage('todos', this.todos)
 	}
 
 	@action.bound completeTodo(todo:ITodo) {
@@ -42,7 +42,7 @@ export class Service implements IService{
 			}
 			return item;
 		})
-		this.StorageService.saveStorage('todos', this.todos);
+		this.storage.saveStorage('todos', this.todos);
 	}
 
 	@action.bound editTodo (todo:ITodo, value:string) {
@@ -52,7 +52,7 @@ export class Service implements IService{
 			}
 			return item;
 		})
-		this.StorageService.saveStorage('todos', this.todos);
+		this.storage.saveStorage('todos', this.todos);
   }
 	
 }
